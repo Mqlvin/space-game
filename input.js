@@ -24,6 +24,8 @@ async function getInput(textOptions) {
 
     await playSelectAnimation();
 
+    alert("COMPLETED")
+
     return selectedIndex;
 }
 
@@ -58,9 +60,9 @@ async function playSelectAnimation() {
 
     setTimeout(() => {
         activeElement.classList.add("input_selected_disappear_2");
-    }, 800);
+    }, 1200);
 
-    return new Promise(resolve => setTimeout(resolve, "2000"));
+    return new Promise(resolve => setTimeout(resolve, "2800"));
 }
 
 

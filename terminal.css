@@ -3,6 +3,18 @@
     --scroll-second: 2px;
 }
 
+/*
+
+    ┏━━┓┏━━━┳━━━┳━━┳━━━┓
+    ┃┏┓┃┃┏━┓┃┏━┓┣┫┣┫┏━┓┃
+    ┃┗┛┗┫┃╋┃┃┗━━┓┃┃┃┃╋┗┛
+    ┃┏━┓┃┗━┛┣━━┓┃┃┃┃┃╋┏┓
+    ┃┗━┛┃┏━┓┃┗━┛┣┫┣┫┗━┛┃
+    ┗━━━┻┛╋┗┻━━━┻━━┻━━━┛
+
+    Basic styling for the terminal.
+*/
+
 .terminal {
     background-color: black;
     background-image: radial-gradient(rgb(14, 68, 14), rgb(2, 26, 2) 200%);
@@ -30,67 +42,49 @@
     z-index: 100;
 }
 
-.t_terminal-history {
-    position: relative;
-    left: 0;
-    top: calc(100% - 80px);
 
-    /* background-color: rgba(0, 0, 0, 0.5); */
+
+/*
+    ┏━┓┏━┳━━━┳━━┳━┓╋┏┓
+    ┃┃┗┛┃┃┏━┓┣┫┣┫┃┗┓┃┃
+    ┃┏┓┏┓┃┃╋┃┃┃┃┃┏┓┗┛┃
+    ┃┃┃┃┃┃┗━┛┃┃┃┃┃┗┓┃┃
+    ┃┃┃┃┃┃┏━┓┣┫┣┫┃╋┃┃┃
+    ┗┛┗┛┗┻┛╋┗┻━━┻┛╋┗━┛
+
+    General main styling for most of the components.
+*/
+
+/* The container holding all i_box's */
+.terminal-boxes {
+    display: flex;
 
     width: 100%;
     height: 100%;
-
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
 }
 
-.t_terminal-input {
-    padding-left: 20px;
-    font-size: 1.1rem;
-    width: 80vw;
-    background: none;
-    border: none;
-    color: rgb(220, 220, 220);
-}
-
-.t_input-row-starter-symbol {
-    user-select: none;
-    padding-top: 5px;
-}
-
-.t_input-row {
-    position: fixed;
-    display: flex;
-    bottom: 0;
-    left: 0;
-
-    padding: 0px 30px 30px 20px;
-}
-
-.t_text {
-    font-size: 1.2rem;
-    padding-left: 50px;   
-    padding-top: 2px;
-    padding-bottom: 2px;
-}
-
+ /* The parent class for the terminal boxes */
 .i_box {
     box-sizing: border-box;
 
     border: 4px solid rgba(255, 255, 255, 0.8);
+    border-radius: 2px;
 }
 
+
+
+/* The container holding the dialog history and selection */
 .box_dialog {
     height: calc(100% - 20px);
 
     flex-grow: 1;
 
-    box-shadow: inset 0px 0px 20px 0px rgba(255, 255, 255, 0.6), 0px 0px 30px 0px rgba(255, 255, 255, 0.25);
+    box-shadow: inset 0px 0px 20px 0px rgba(255, 255, 255, 0.4), 0px 0px 30px 0px rgba(255, 255, 255, 0.25);
 
     margin: 10px 10px 10px 10px;
 }
 
+/* The entire holding vitals information */
 .box_vitals {
     height: calc(100% - 20px);
 
@@ -99,15 +93,12 @@
     box-shadow: inset 0px 0px 20px 0px rgba(255, 255, 255, 0.6), 0px 0px 30px 0px rgba(255, 255, 255, 0.25);
 
     margin: 10px 10px 10px 0px;
+    padding: 24px 40px 12px 40px;
 }
 
-.terminal-boxes {
-    display: flex;
 
-    width: 100%;
-    height: 100%;
-}
 
+/* The container holding the suggested dialog options - this has a parent container */
 .dialog_options_container {
     width: 942px;
     height: 100px;
@@ -121,6 +112,7 @@
     padding: 20px 0px 50px 0px;
 }
 
+/* A text class for an unselected dialog option */
 .input_option {
     width: 100%;
 
@@ -132,29 +124,33 @@
     transition-timing-function: cubic-bezier(0,.25,.3,.99);
 }
 
+/* Modifiers for a selected dialog option */
 .option_active {
     margin-left: 15px;
     width: calc(100% - 50px);
     color: rgba(245, 245, 245, 0.9);
 }
 
+
+
+/* A container for the > symbol next to the selected option */
 .dialog_carat_container {
     width: 50px;
     height: 100px;
 
-
     bottom: 14px;
-
     position: fixed;
 
     padding: 20px 0px 50px 0px;
 }
 
+/* Holds the carat and the dialog options container */
 .input_container {
     height: 100%;
     display: flex;
 }
 
+/* Text class for the > symbol */
 .input_selector {
     position: fixed;
 
@@ -163,23 +159,42 @@
     transition: 0.2s;
 }
 
+/* Modifier class for when the selector is hidden */
 .selector_hidden {
     transition: 0.3s;
     opacity: 0;
 }
 
+
+
+/*
+
+    ┏━━━┳━┓╋┏┳━━┳━┓┏━┳━━━┳━━━━┳━━┳━━━┳━┓╋┏┳━━━┓
+    ┃┏━┓┃┃┗┓┃┣┫┣┫┃┗┛┃┃┏━┓┃┏┓┏┓┣┫┣┫┏━┓┃┃┗┓┃┃┏━┓┃
+    ┃┃╋┃┃┏┓┗┛┃┃┃┃┏┓┏┓┃┃╋┃┣┛┃┃┗┛┃┃┃┃╋┃┃┏┓┗┛┃┗━━┓
+    ┃┗━┛┃┃┗┓┃┃┃┃┃┃┃┃┃┃┗━┛┃╋┃┃╋╋┃┃┃┃╋┃┃┃┗┓┃┣━━┓┃
+    ┃┏━┓┃┃╋┃┃┣┫┣┫┃┃┃┃┃┏━┓┃╋┃┃╋┏┫┣┫┗━┛┃┃╋┃┃┃┗━┛┃
+    ┗┛╋┗┻┛╋┗━┻━━┻┛┗┛┗┻┛╋┗┛╋┗┛╋┗━━┻━━━┻┛╋┗━┻━━━┛
+
+    Animations for the various systems, like dialog selection.
+*/
+
+/* The selected input slides right */
 .input_selected_disappear {
-    transition: 0.5s !important;
+    transition: 0.6s !important;
     transition-timing-function: cubic-bezier(0,.7,.5,1);
 
     color: rgba(255, 255, 255, 1) !important;
     margin-left: 50px;
 }
 
+/* The selected input disappears */
 .input_selected_disappear_2 {
+    transition: 1.0s !important;
     opacity: 0;
 }
 
+/* The unselected options immediately disappear */
 .input_unselected_disappear {
     transition: 0.3s !important;
     transition-timing-function: cubic-bezier(0,.5,.5,1);
