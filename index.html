@@ -4,17 +4,21 @@
         <title>Space Game</title>
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="terminal.css">
-        <link rel="stylesheet" href="carat.css">
+        <link rel="stylesheet" href="vitals.css">
 
         <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet'>
     </head>
 
     <body onload="scrollArtifactLines()">
+
         <div class="border">
-            <div class="top-shadow"></div>
+
             <div class="terminal window">
+
                 <div class="terminal-boxes">
+
                     <div class="i_box box_dialog">
+
                         <div class="input_container">
                             
                             <div class="dialog_carat_container">
@@ -22,7 +26,7 @@
                             </div>
 
                             <div class="dialog_options_container">
-
+                                <!-- Content is dynamically added here -->
                             </div>
 
                         </div>
@@ -30,30 +34,38 @@
                     </div>
     
                     <div class="i_box box_vitals">
+                        <!-- Content is dynamically edited here -->
+
+                        <div class="vital-databar-container">
+
+                            <div class="vital-bar-text">Oxygen (63%)</div>
+
+                            <div class="vital-bar-container">
+                                <div class="vital-bar-fluid"></div>
+                            </div>
+
+                        </div>
+
+                        <div class="vital-databar-container">
+
+                            <div class="vital-bar-text">Energy (89%)</div>
+
+                            <div class="vital-bar-container">
+                                <div class="vital-bar-fluid"></div>
+                            </div>
+
+                        </div>
+
                     </div>
-                </div>
-                
 
+                </div> 
 
-
-                <!--
-                <div class="t_terminal-history">
-                    
-                </div>
-                <div class="t_input-row">
-                    <p class="t_input-row-starter-symbol">&gt;</p>
-                    <input class="t_terminal-input" type="text" spellcheck="false" disabled>
-                </div>
-                -->
             </div>
+
         </div>
 
-        
-        <script type="text/javascript" src="output_line.js"></script>
         <script type="text/javascript" src="constants.js"></script>
 
-        <script type="text/javascript" src="carat.js"></script>
-        <script type="text/javascript" src="input_handler.js"></script>
         <script type="text/javascript" src="terminal.js"></script>
         <script type="text/javascript" src="input.js"></script>
         <script type="text/javascript" src="game.js"></script>
