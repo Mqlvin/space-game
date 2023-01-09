@@ -9,7 +9,7 @@
         <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet'>
     </head>
 
-    <body onload="scrollArtifactLines()">
+    <body onload="scrollTerminalLines()">
 
         <div class="border">
 
@@ -21,40 +21,73 @@
 
                         <div class="input_container">
                             
+
+
+
                             <div class="dialog_carat_container">
                                 <p class="input_selector selector_hidden">&gt;</p>
                             </div>
 
                             <div class="dialog_options_container">
+
                                 <!-- Content is dynamically added here -->
+
                             </div>
+
+
+
 
                         </div>
                         
                     </div>
     
                     <div class="i_box box_vitals">
+
+
+
+
                         <!-- Content is dynamically edited here -->
 
                         <div class="vital-databar-container">
 
-                            <div class="vital-bar-text">Oxygen (63%)</div>
+                            <p class="vital-bar-text Oxygen">Oxygen (63%)</p>
 
                             <div class="vital-bar-container">
-                                <div class="vital-bar-fluid"></div>
+                                <div class="vital-bar-fluid Oxygen"></div>
                             </div>
 
                         </div>
 
                         <div class="vital-databar-container">
 
-                            <div class="vital-bar-text">Energy (89%)</div>
+                            <p class="vital-bar-text Power">Power (89%)</p>
 
                             <div class="vital-bar-container">
-                                <div class="vital-bar-fluid"></div>
+                                <div class="vital-bar-fluid Power"></div>
                             </div>
 
                         </div>
+
+                        <div class="vital-databar-container">
+
+                            <div class="vital-bar-markings markings-25"></div>
+                            <div class="vital-bar-markings markings-50"></div>
+                            <div class="vital-bar-markings markings-75"></div>
+
+                            <p class="vital-bar-text Temperature">Temperature (20℃)</p>
+
+                            <div class="vital-bar-container">
+                                <div class="vital-bar-fluid Temperature"></div>
+                            </div>
+
+                            <div class="vital-bar-markings markings-25 markings-bottom"></div>
+                            <div class="vital-bar-markings markings-50 markings-bottom"></div>
+                            <div class="vital-bar-markings markings-75 markings-bottom"></div>
+
+                        </div>
+
+
+
 
                     </div>
 
@@ -68,6 +101,7 @@
 
         <script type="text/javascript" src="terminal.js"></script>
         <script type="text/javascript" src="input.js"></script>
+        <script type="text/javascript" src="vitals.js"></script>
         <script type="text/javascript" src="game.js"></script>
     </body>
 </html>
