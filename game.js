@@ -1,8 +1,12 @@
 // var bootupTime = printScript(BOOTUP_SCRIPT);
 async function main() {
     let choice = await getInput(["Enter the room", "Enter the second room", "Turn back", "Go through the hidden passage"]);
-    
-    
+
+    if(choice == 0) {
+        getVitals().setOxygen(50);
+    } else {
+        getVitals().setEnergy(10);
+    }
 }
 
 main();

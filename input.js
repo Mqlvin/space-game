@@ -24,8 +24,6 @@ async function getInput(textOptions) {
 
     await playSelectAnimation();
 
-    alert("COMPLETED")
-
     return selectedIndex;
 }
 
