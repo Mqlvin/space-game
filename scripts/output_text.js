@@ -25,7 +25,17 @@ class TextBlock {
     delay(msDelay) {
         this.activeTextComponent.typeSpeed = msDelay;
         this.activeTextComponent.isOnlyDelay = true;
-    } 
+    }
+
+    async read() {
+
+    }
+
+    async readAll() {
+        for(let i = 0; i < this.textComponents.length; i++) {
+            await this.read();
+        }
+    }
 
 
 

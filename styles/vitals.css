@@ -57,8 +57,8 @@
     width: 73%;
     height: 100%;
 
-    transition: 1.5s;
-    transition-timing-function: cubic-bezier(.08,.46,.3,1);
+    transition: 1.2s;
+    transition-timing-function: cubic-bezier(.08,.2,.3,1);
 }
 
 

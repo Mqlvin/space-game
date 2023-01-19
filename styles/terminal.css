@@ -199,3 +199,26 @@
 
     opacity: 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.dialog-speech-container {
+    background-color: black;
+    width: 100%;
+    min-height: 20px;
+}
