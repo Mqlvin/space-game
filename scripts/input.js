@@ -58,9 +58,9 @@ async function playSelectAnimation() {
 
     setTimeout(() => {
         activeElement.classList.add("input_selected_disappear_2");
-    }, 1200);
+    }, 1000);
 
-    return new Promise(resolve => setTimeout(resolve, "2800"));
+    return new Promise(resolve => setTimeout(resolve, "2200"));
 }
 
 
