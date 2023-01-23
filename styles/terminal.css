@@ -69,11 +69,35 @@
     border-radius: 2px;
 }
 
+/* The container holding all scripts */
+.script-container {
+    /* background-color: rgba(255, 0, 0, 0.25); */
+    
+    max-width: 100%;
+    height: calc(100% - 180px);
+
+    display: flex;
+    flex-flow: column-reverse;
+    overflow-wrap: break-word;
+
+    box-sizing: border-box;
+
+    margin: 10px;
+    margin-left: 50px;
+}
+
+/* The container for the element holding all text components in a section of the script */
+.script-text-container {
+    text-shadow: 0 0 5px #999999;
+}
+
+
 
 
 /* The container holding the dialog history and selection */
 .box_dialog {
     height: calc(100% - 20px);
+    max-width: calc(100% - 430px); /* ensure it doesn't grow larger to push the vitals box to the right */
 
     flex-grow: 1;
 
@@ -87,6 +111,7 @@
     height: calc(100% - 20px);
 
     width: 400px;
+    min-width: 400px;
 
     box-shadow: inset 0px 0px 20px 0px rgba(255, 255, 255, 0.6), 0px 0px 30px 0px rgba(255, 255, 255, 0.25);
 
@@ -101,13 +126,13 @@
     width: 942px;
     height: 100px;
 
-    margin-left: 60px;
+    margin-left: 50px;
 
     bottom: 14px;
 
     position: fixed;
 
-    padding: 20px 0px 50px 0px;
+    padding: 20px 0px 40px 0px;
 }
 
 /* A text class for an unselected dialog option */
@@ -139,7 +164,7 @@
     bottom: 14px;
     position: fixed;
 
-    padding: 20px 0px 50px 0px;
+    padding: 20px 0px 40px 0px;
 }
 
 /* Holds the carat and the dialog options container */
@@ -152,7 +177,7 @@
 .input_selector {
     position: fixed;
 
-    margin: 2px 0px 2px 32px;
+    margin: 2px 0px 2px 28px;
 
     transition: 0.2s;
 }
@@ -198,27 +223,4 @@
     transition-timing-function: cubic-bezier(0,.5,.5,1);
 
     opacity: 0;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.dialog-speech-container {
-    background-color: black;
-    width: 100%;
-    min-height: 20px;
 }
