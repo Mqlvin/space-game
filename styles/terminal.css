@@ -69,27 +69,6 @@
     border-radius: 2px;
 }
 
-/* The container holding all scripts */
-.script-container {
-    /* background-color: rgba(255, 0, 0, 0.25); */
-    
-    max-width: 100%;
-    height: calc(100% - 180px);
-
-    display: flex;
-    flex-flow: column-reverse;
-    overflow-wrap: break-word;
-
-    box-sizing: border-box;
-
-    margin: 10px;
-    margin-left: 50px;
-}
-
-/* The container for the element holding all text components in a section of the script */
-.script-text-container {
-    text-shadow: 0 0 5px #999999;
-}
 
 
 
@@ -121,19 +100,8 @@
 
 
 
-/* The container holding the suggested dialog options - this has a parent container */
-.dialog_options_container {
-    width: 942px;
-    height: 100px;
 
-    margin-left: 50px;
 
-    bottom: 14px;
-
-    position: fixed;
-
-    padding: 20px 0px 40px 0px;
-}
 
 /* A text class for an unselected dialog option */
 .input_option {
@@ -152,75 +120,4 @@
     margin-left: 15px;
     width: calc(100% - 50px);
     color: rgba(245, 245, 245, 0.9);
-}
-
-
-
-/* A container for the > symbol next to the selected option */
-.dialog_carat_container {
-    width: 50px;
-    height: 100px;
-
-    bottom: 14px;
-    position: fixed;
-
-    padding: 20px 0px 40px 0px;
-}
-
-/* Holds the carat and the dialog options container */
-.input_container {
-    height: 100%;
-    display: flex;
-}
-
-/* Text class for the > symbol */
-.input_selector {
-    position: fixed;
-
-    margin: 2px 0px 2px 28px;
-
-    transition: 0.2s;
-}
-
-/* Modifier class for when the selector is hidden */
-.selector_hidden {
-    transition: 0.3s;
-    opacity: 0;
-}
-
-
-
-/*
-
-    ┏━━━┳━┓╋┏┳━━┳━┓┏━┳━━━┳━━━━┳━━┳━━━┳━┓╋┏┳━━━┓
-    ┃┏━┓┃┃┗┓┃┣┫┣┫┃┗┛┃┃┏━┓┃┏┓┏┓┣┫┣┫┏━┓┃┃┗┓┃┃┏━┓┃
-    ┃┃╋┃┃┏┓┗┛┃┃┃┃┏┓┏┓┃┃╋┃┣┛┃┃┗┛┃┃┃┃╋┃┃┏┓┗┛┃┗━━┓
-    ┃┗━┛┃┃┗┓┃┃┃┃┃┃┃┃┃┃┗━┛┃╋┃┃╋╋┃┃┃┃╋┃┃┃┗┓┃┣━━┓┃
-    ┃┏━┓┃┃╋┃┃┣┫┣┫┃┃┃┃┃┏━┓┃╋┃┃╋┏┫┣┫┗━┛┃┃╋┃┃┃┗━┛┃
-    ┗┛╋┗┻┛╋┗━┻━━┻┛┗┛┗┻┛╋┗┛╋┗┛╋┗━━┻━━━┻┛╋┗━┻━━━┛
-
-    Animations for the various systems, like dialog selection.
-*/
-
-/* The selected input slides right */
-.input_selected_disappear {
-    transition: 0.6s !important;
-    transition-timing-function: cubic-bezier(0,.7,.5,1);
-
-    color: rgba(255, 255, 255, 1) !important;
-    margin-left: 50px;
-}
-
-/* The selected input disappears */
-.input_selected_disappear_2 {
-    transition: 1.0s !important;
-    opacity: 0;
-}
-
-/* The unselected options immediately disappear */
-.input_unselected_disappear {
-    transition: 0.3s !important;
-    transition-timing-function: cubic-bezier(0,.5,.5,1);
-
-    opacity: 0;
 }
