@@ -27,13 +27,13 @@ class TextBlock {
         this.activeTextComponent.isOnlyDelay = true;
     }
 
-    async read() {
-
+    async display() {
+        
     }
 
-    async readAll() {
+    async displayAll() {
         for(let i = 0; i < this.textComponents.length; i++) {
-            await this.read();
+            await this.display();
         }
     }
 
