@@ -10,21 +10,7 @@ const LINE_HEIGHT = 32; // height of lines in the terminal history
 
 
 
-// misc constants
-const HTML_ENTITIES = new Map([
-    [" ","&nbsp;"],
-    ["<","&lt;"],
-    [">","&gt;"],
-    ["&","&amp;"],
-    ["\"","&quot;"],
-    ["'","&apos;"],
-    ["¢","&cent;"],
-    ["£","&pound;"],
-    ["¥","&yen;"],
-    ["€","&euro;"],
-    ["©","&copy;"],
-    ["®","&reg"]
-]);
+
 
 const VITAL_PROCESSES = [
     "Satalite System",
