@@ -1,0 +1,147 @@
+/* The container holding all scripts */
+.dialog-container {
+    /* background-color: rgba(255, 0, 0, 0.25); */
+    
+    max-width: 100%;
+    height: calc(100% - 180px);
+
+    display: flex;
+    flex-flow: column-reverse;
+    overflow-wrap: break-word;
+
+    box-sizing: border-box;
+
+    margin: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+
+
+
+
+
+
+
+
+/* The container holding the suggested dialog options - this has a parent container */
+.dialog_options_container {
+    width: 942px;
+    height: 100px;
+
+    margin-left: 50px;
+
+    bottom: 14px;
+
+    position: fixed;
+
+    padding: 20px 0px 40px 0px;
+}
+
+
+
+/* A container for the > symbol next to the selected option */
+.dialog_carat_container {
+    width: 50px;
+    height: 100px;
+
+    bottom: 14px;
+    position: fixed;
+
+    padding: 20px 0px 40px 0px;
+}
+
+/* Holds the carat and the dialog options container */
+.input_container {
+    height: 100px;
+    display: flex;
+}
+
+/* Text class for the > symbol */
+.input_selector {
+    position: fixed;
+
+    margin: 2px 0px 2px 28px;
+
+    transition: 0.2s;
+}
+
+/* Modifier class for when the selector is hidden */
+.selector_hidden {
+    transition: 0.3s;
+    opacity: 0;
+}
+
+
+/*
+    ┏━━━┳━┓╋┏┳━━┳━┓┏━┳━━━┳━━━━┳━━┳━━━┳━┓╋┏┳━━━┓
+    ┃┏━┓┃┃┗┓┃┣┫┣┫┃┗┛┃┃┏━┓┃┏┓┏┓┣┫┣┫┏━┓┃┃┗┓┃┃┏━┓┃
+    ┃┃╋┃┃┏┓┗┛┃┃┃┃┏┓┏┓┃┃╋┃┣┛┃┃┗┛┃┃┃┃╋┃┃┏┓┗┛┃┗━━┓
+    ┃┗━┛┃┃┗┓┃┃┃┃┃┃┃┃┃┃┗━┛┃╋┃┃╋╋┃┃┃┃╋┃┃┃┗┓┃┣━━┓┃
+    ┃┏━┓┃┃╋┃┃┣┫┣┫┃┃┃┃┃┏━┓┃╋┃┃╋┏┫┣┫┗━┛┃┃╋┃┃┃┗━┛┃
+    ┗┛╋┗┻┛╋┗━┻━━┻┛┗┛┗┻┛╋┗┛╋┗┛╋┗━━┻━━━┻┛╋┗━┻━━━┛
+*
+
+
+/* A container for the > symbol next to the selected option */
+.dialog_carat_container {
+    width: 50px;
+    height: 100px;
+
+    bottom: 14px;
+    position: fixed;
+
+    padding: 20px 0px 40px 0px;
+}
+
+/* Holds the carat and the dialog options container */
+.input_container {
+    height: 100px;
+    display: flex;
+}
+
+/* Text class for the > symbol */
+.input_selector {
+    position: fixed;
+
+    margin: 2px 0px 2px 28px;
+
+    transition: 0.2s;
+}
+
+/* Modifier class for when the selector is hidden */
+.selector_hidden {
+    transition: 0.3s;
+    opacity: 0;
+}
+
+
+
+
+
+
+
+
+/* Dialog entries */
+.dialog-entry-container {
+    min-height: 50px;
+    margin: 24px 0px 24px 0px;
+}
+
+/* The container for the element holding all text components in a section of the script */
+.dialog-text-container {
+    text-shadow: 0 0 6px #BBBBBB;
+    font-weight: 400;
+}
+
+/* The prefix holding the icon and name */
+.dialog-prefix-container {
+    font-weight: 700;
+    text-shadow: 0 0 12px #CCCCCC;
+    color: rgb(240, 240, 240);
+}
+
+.prefix-you {
+    font-weight: 900;
+    color: white;
+}
