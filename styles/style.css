@@ -2,21 +2,16 @@
     margin: 0;
     padding: 0;
     outline: none;
-    font-family: 'Share Tech Mono', monospace;
+    font-family: 'JetBrains Mono', monospace; 
     font-size: 20px;
     font-weight: 500;
     font-stretch: extra-expanded;
     letter-spacing: 2px;
 
     color: white;
-    text-shadow: 0 0 7px #FFFFFF;
+    text-shadow: 0 0 7px #DDDDDD;
 
     user-select: none;
-}
-
-*::selection {
-    background: rgba(0, 0, 0, 0.43);
-    text-shadow: none;
 }
 
 html, body {
