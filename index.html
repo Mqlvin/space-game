@@ -2,15 +2,14 @@
 <html>
     <head>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet"> 
 
         <title>Space Game</title>
 
         <link rel="stylesheet" href="styles/style.css">
         <link rel="stylesheet" href="styles/terminal.css">
         <link rel="stylesheet" href="styles/vitals.css">
-
-        <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet'>
+        <link rel="stylesheet" href="styles/dialog.css">
     </head>
 
     <body onload="scrollTerminalLines()">
@@ -23,8 +22,36 @@
 
                     <div class="i_box box_dialog">
 
-                        <div class="dialog-speech-container">
-                            <p class=""></p>
+                        <div class="dialog-container">
+
+                            
+
+
+                            <div class="dialog-entry-container">
+
+                                <p class="dialog-prefix">
+                                    📻 Luitenant Jones
+                                </p>
+
+                                <p class="dialog-text-container">Ok what am i\n<br>saying at this point. I feel like this is a really long piece of text and I am wondering how on earth i feel like youre capping right now.</p>
+
+                            </div>
+
+                            <div class="dialog-entry-container">
+
+                                <p class="dialog-prefix-container prefix-you">
+                                    👨‍🚀 You
+                                </p>
+
+                                <p class="dialog-text-container">Ok what am i saying at this point.</p>
+
+                            </div>
+                           
+                            
+
+
+
+                            
                         </div>
 
                         <div class="input_container">
@@ -106,8 +133,9 @@
 
         </div>
 
-        <script type="text/javascript" src="scripts/constants.js"></script>
-
+        <!-- <script type="text/javascript" src="scripts/constants.js"></script> -->
+        <script type="text/javascript" src="scripts/output_text.js"></script>
+            
         <script type="text/javascript" src="scripts/terminal.js"></script>
         <script type="text/javascript" src="scripts/input.js"></script>
         <script type="text/javascript" src="scripts/vitals.js"></script>

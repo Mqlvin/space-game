@@ -80,8 +80,9 @@
     ┃┗━┛┃┃┗┓┃┃┃┃┃┃┃┃┃┃┗━┛┃╋┃┃╋╋┃┃┃┃╋┃┃┃┗┓┃┣━━┓┃
     ┃┏━┓┃┃╋┃┃┣┫┣┫┃┃┃┃┃┏━┓┃╋┃┃╋┏┫┣┫┗━┛┃┃╋┃┃┃┗━┛┃
     ┗┛╋┗┻┛╋┗━┻━━┻┛┗┛┗┻┛╋┗┛╋┗┛╋┗━━┻━━━┻┛╋┗━┻━━━┛
-*
+*/
 
+/* selection/input animations */
 
 /* A container for the > symbol next to the selected option */
 .dialog_carat_container {
@@ -109,12 +110,35 @@
     transition: 0.2s;
 }
 
-/* Modifier class for when the selector is hidden */
-.selector_hidden {
-    transition: 0.3s;
+.input_selected_disappear {
+    transition: 0.5s !important;
+    transition-timing-function: cubic-bezier(0,.7,.5,1);
+
+    color: rgba(255, 255, 255, 1) !important;
+    margin-left: 50px;
+}
+
+/* The selected input disappears */
+.input_selected_disappear_2 {
+    transition: 0.8s !important;
     opacity: 0;
 }
 
+/* The unselected options immediately disappear */
+.input_unselected_disappear {
+    transition: 0.2s !important;
+    transition-timing-function: cubic-bezier(0,.5,.5,1);
+
+    opacity: 0;
+}
+
+
+
+/* selection/input animations */
+.dialog-hidden-anim {
+    opacity: 0 !important;
+    transform: translateY(20px);
+}
 
 
 
@@ -126,6 +150,10 @@
 .dialog-entry-container {
     min-height: 50px;
     margin: 24px 0px 24px 0px;
+
+    opacity: 1;
+    transition: 0.3s !important;
+    transition-timing-function: cubic-bezier(0,.05,.010,1) !important;
 }
 
 /* The container for the element holding all text components in a section of the script */
@@ -135,7 +163,7 @@
 }
 
 /* The prefix holding the icon and name */
-.dialog-prefix-container {
+.dialog-prefix {
     font-weight: 700;
     text-shadow: 0 0 12px #CCCCCC;
     color: rgb(240, 240, 240);

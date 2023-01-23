@@ -1,9 +1,12 @@
 // var bootupTime = printScript(BOOTUP_SCRIPT);
+
+let testTextBlock = new DialogEntry("You").append("This is my example text").setBold(false).setCharacterInterval(0).setUnderline(true).append("Hi guys this is cool").setBold(true);
+
 async function main() {
     let choice = await getInput(["Enter the room", "Enter the second room", "Turn back", "Go through the hidden passage"]);
 
     if(choice == 0) {
-        getVitals().setOxygen(50);
+        await testTextBlock.display();
     } else {
         getVitals().setEnergy(10);
     }
