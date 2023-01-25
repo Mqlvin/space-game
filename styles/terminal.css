@@ -103,21 +103,4 @@
 
 
 
-/* A text class for an unselected dialog option */
-.input_option {
-    width: 100%;
 
-    color: rgba(220, 220, 220, 0.7);
-
-    margin: 2px 0px 2px 0px;
-
-    transition: 0.17s;
-    transition-timing-function: cubic-bezier(0,.25,.3,.99);
-}
-
-/* Modifiers for a selected dialog option */
-.option_active {
-    margin-left: 15px;
-    width: calc(100% - 50px);
-    color: rgba(245, 245, 245, 0.9);
-}

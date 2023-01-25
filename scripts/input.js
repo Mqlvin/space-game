@@ -14,6 +14,11 @@ let selectedIndex = 0;
 let options;
 
 async function getInput(textOptions) {
+    // clear previous option elements
+    while(DIALOG_ELEMENT.firstChild) {
+        DIALOG_ELEMENT.removeChild(DIALOG_ELEMENT.firstChild);
+    }
+
     // var init
     options = textOptions;
     genOptionTexts();
@@ -77,6 +82,11 @@ function appendLine(text, active) {
     ele.appendChild(document.createTextNode(text));
     ele.classList.add("input_option");
     if(active) ele.classList.add("option_active");
+
+    ele.classList.add("input_hidden");
+    setTimeout(() => {
+        ele.classList.remove("input_hidden");
+    }, 30);
 
     DIALOG_ELEMENT.appendChild(ele);
 }

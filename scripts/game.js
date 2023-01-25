@@ -2,8 +2,8 @@
 
 let testTextBlock = new DialogEntry("Computer")
         .append("This is my example text\nwith a breakline").setBold(false).setCharacterInterval(100).setUnderline(true).pack()
-        .append("...").setBold(false).setCharacterInterval(500).pack()
-        .append("Hi guys this is cool").setBold(true).setCharacterInterval(100).pack(); // so they shold be displaying one after another
+        .append("...").setBold(false).setCharacterInterval(100).pack()
+        .append("This font is bolded").setBold(true).setCharacterInterval(100).pack(); // so they shold be displaying one after another
 
 async function main() {
     let choice = await getInput(["Enter the room", "Enter the second room", "Turn back", "Go through the hidden passage"]);
@@ -12,6 +12,12 @@ async function main() {
         await testTextBlock.displayAll();
     } else {
         getVitals().setEnergy(10);
+    }
+
+    let choice2 = await getInput(["Example option", "Pick me", "Another example option"]);
+
+    if(choice2 == 1) {
+        await new DialogEntry("You").append("This is another test statement! (this will display instantly)").setCharacterInterval(0).pack().displayAll();
     }
 
     // The problem is that the two pieces of tesxt display at the same time.

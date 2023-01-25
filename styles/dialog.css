@@ -57,6 +57,25 @@
     display: flex;
 }
 
+/* A text class for an unselected dialog option */
+.input_option {
+    width: 100%;
+
+    color: rgba(220, 220, 220, 0.7);
+
+    margin: 2px 0px 2px 0px;
+
+    transition: 0.17s;
+    transition-timing-function: cubic-bezier(0,.25,.3,.99);
+}
+
+/* Modifiers for a selected dialog option */
+.option_active {
+    margin-left: 15px;
+    width: calc(100% - 50px);
+    color: rgba(245, 245, 245, 0.9);
+}
+
 /* Text class for the > symbol */
 .input_selector {
     position: fixed;
@@ -101,6 +120,12 @@
     display: flex;
 }
 
+/* Given to inputs before they're shown, for fade-in animation */
+.input_hidden {
+    opacity: 0 !important;
+    transform: translateX(-10px);
+}
+
 /* Text class for the > symbol */
 .input_selector {
     position: fixed;
@@ -112,7 +137,7 @@
 
 .input_selected_disappear {
     transition: 0.5s !important;
-    transition-timing-function: cubic-bezier(0,.7,.5,1);
+    
 
     color: rgba(255, 255, 255, 1) !important;
     margin-left: 50px;
