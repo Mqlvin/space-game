@@ -23,60 +23,129 @@ const HTML_ENTITIES = new Map([
     ["®","&reg"]
 ]);
 
-const PLAYER_ICONS = ["👨‍🚀", "📻"];
+const PLAYER_ICON_MAP = {
+    "you":"👨‍🚀",
+    "computer":"💻",
+    "other":"📻"
+};
 
 
 
 
 class DialogEntry {
     constructor(name) {
-        this.textComponents = [];
+        this.textComponents = []; // each piece of text (e.g. the two you saw) os a textCompeontn
         this.activeTextComponent = undefined;
 
         this.name = name;
-        this.you = name.toLowerCase() == "you";
 
-        this.dialogElement = undefined;
+        this.dialogContainerElement = undefined;
     }
 
     /* "packs" the current and starts a new text block */
     append(text) {
-        if(this.activeTextComponent != undefined) {
-            this.textComponents.push(this.activeTextComponent);
-        }
-
         this.activeTextComponent = new TextComponent();
         this.activeTextComponent.text = translateStringToHTML(text);
 
-        return this
+        return this;
     }
 
     delay(msDelay) {
         this.activeTextComponent.typeSpeed = msDelay;
         this.activeTextComponent.isOnlyDelay = true;
+
         return this;
     }
+
+    pack() {
+        if(this.activeTextComponent != undefined) {
+            this.textComponents.push(this.activeTextComponent);
+        }
+
+        return this;
+    }
+
+
 
     async display() {
         // if no text has been displayed yet, make a dialog container
 
-        console.log("made it here")
-
-        if(this.dialogElement == undefined) { // new field for class declaration
-            this.dialogElement = createDialogContainer(this.you, this.name);
+        if(this.dialogContainerElement == undefined) {
+            this.dialogContainerElement = createDialogContainer(this.name);
             console.log("created container")
         }
         
-        // append the text to the dialog container
-        
+        // add text into new text element, then append the text element to the `this.dialogContainerElement`
 
-        // TODO
+        let newTextElement = createDialogText(); // create new text element
+        let textComponent = this.textComponents[0]; // the textComponent to display
+        this.textComponents.shift(); // removed the textComponent being displayed - shift removes the first entry
+
+        // if the text only represents a delay, just wait the specified period of time
+        if(textComponent.isOnlyDelay) {
+            if(textComponent.typeSpeed == 0) {
+                return new Promise(resolve => resolve());
+            } else {           
+                return new Promise(resolve => setTimeout(resolve, textComponent.typeSpeed));
+            }
+        }
+
+
+
+        // handle special cases
+        if(textComponent.text == "") {
+            return new Promise(resolve => resolve()); // i thought returning the promise would say the async function is done and it would continue
+                                                        // so by that logic if i return nothing the statment would never complete idk THIS IS WHAT im confused aobut
+        }
+
+
+
+        // add stylings        
+        if(textComponent.bold) newTextElement.classList.add("dialog-bold");
+        if(textComponent.italic) newTextElement.classList.add("dialog-italic");
+        if(textComponent.underline) newTextElement.classList.add("dialog-underline");
+
+
+        // add it now to main container now, as text will be displayed
+        this.dialogContainerElement.appendChild(newTextElement);
+
+
+        // display text instantly, if ms between character time is 0
+        if(textComponent.typeSpeed == 0) {
+
+            newTextElement.innerHTML = textComponent.text.replace("\n", "<br>");
+
+            return new Promise(resolve => resolve());
+
+
+        } else { // otherwise create the schedules for displaying the other characters
+
+            let i = 0;
+
+            setInterval(() => { // this could probably be optimized
+                newTextElement.innerHTML = textComponent.text.substring(0, i).replace("\n", "<br>");
+                i++;
+            }, textComponent.typeSpeed);
+
+
+            return new Promise(resolve => setTimeout(resolve, textComponent.typeSpeed * (textComponent.text.length + 1)));
+        }
     }
 
     async displayAll() {
-        for(let i = 0; i < this.textComponents.length; i++) {
-            await this.display();
+        let length = this.textComponents.length; // each line is a text component - i just would like to be able to simply write code in the game.js
+
+        for(let i = 0; i < length; i++) {
+
+
+            console.log("displayng: " + this.textComponents[0]);
+
+
+            await this.display(); // it handles that itself
+
         }
+
+        console.log("here")
     }
 
 
@@ -112,12 +181,6 @@ class DialogEntry {
         this.activeTextComponent.typeSpeed = ms;
         return this;
     }
-
-    wait(ms) {
-        this.activeTextComponent.typeSpeed = ms;
-        this.activeTextComponent.actsAsDelay = true;
-        return this;
-    }
 }
 
 
@@ -136,7 +199,7 @@ class TextComponent {
 
         this.textColor = "rgb(255, 255, 255)";
         this.textSize = "14px";
-        this.typeSpeed = "0";
+        this.typeSpeed = 0;
 
         this.actsAsDelay = false;
         // if this var is true, the TextComponent simply acts as a display and shows no characters - it'll wait out for the duration of the typeSpeed.
@@ -146,18 +209,16 @@ class TextComponent {
 
 
 // dialog util
-function createDialogContainer(you, name) {
+function createDialogContainer(name) {
     let dialogContainerElement = document.getElementsByClassName("dialog-container")[0];
 
     let newDialogEntryContainerElement = document.createElement("div"); // create new container
     newDialogEntryContainerElement.classList.add("dialog-entry-container");
 
-    console.log(newDialogEntryContainerElement.classList)
-
     let newDialogPrefix = document.createElement("p"); // create playername <p>
     newDialogPrefix.classList.add("dialog-prefix");
-    newDialogPrefix.innerHTML = PLAYER_ICONS[(you ? 0 : 1)] + " " + name; // add icon + text
-    if(you) newDialogPrefix.classList.add("prefix-you"); // make the you text bold if needed
+    newDialogPrefix.innerHTML = PLAYER_ICON_MAP[Object.keys(PLAYER_ICON_MAP).includes(name.toLowerCase()) ? name.toLowerCase() : PLAYER_ICON_MAP.length] + " " + name; // add icon + text
+    if(name.toLowerCase() == "player" || name.toLowerCase() == "computer") newDialogPrefix.classList.add("prefix-you"); // make the you text bold if needed
 
     newDialogEntryContainerElement.appendChild(newDialogPrefix); // add playername to container
 
@@ -169,18 +230,19 @@ function createDialogContainer(you, name) {
 
     // play the show animation
     setTimeout(() => {
-        console.log("showing element")
         newDialogEntryContainerElement.classList.remove("dialog-hidden-anim");
     }, 10);
     
-    
-
-    console.log(newDialogEntryContainerElement.classList)
-
     return newDialogEntryContainerElement;
 }
 
+function createDialogText() {
+    let newDialogText = document.createElement("span");
 
+    newDialogText.classList.add("dialog-text-container");
+
+    return newDialogText;
+}
 
 
 
@@ -192,9 +254,7 @@ function createDialogContainer(you, name) {
 function translateStringToHTML(string) {
     let preprocessed = string;
 
-
-    // add line breaks (must be done before special character replace considering <> html entities)
-    preprocessed = preprocessed.replace("\n", "<br>");
+    // line breaks will be handled when the text is being appened/typed out on screen
 
     // convert special characters
     HTML_ENTITIES.forEach((k, v) => {

@@ -160,16 +160,43 @@
 .dialog-text-container {
     text-shadow: 0 0 6px #BBBBBB;
     font-weight: 400;
+    font-size: 18px;
 }
 
 /* The prefix holding the icon and name */
 .dialog-prefix {
-    font-weight: 700;
+    font-weight: 600;
     text-shadow: 0 0 12px #CCCCCC;
     color: rgb(240, 240, 240);
 }
 
 .prefix-you {
-    font-weight: 900;
+    font-weight: 1000;
     color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* dialog modifiers */
+.dialog-bold {
+    font-weight: 700;
+}
+
+.dialog-italic {
+    font-style: italic;
+}
+
+.dialog-underline {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-decoration-skip-ink: none;
 }
