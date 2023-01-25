@@ -25,7 +25,7 @@
 
 
 /* The container holding the suggested dialog options - this has a parent container */
-.dialog_options_container {
+.dialog-options-container {
     width: 942px;
     height: 100px;
 
@@ -41,7 +41,7 @@
 
 
 /* A container for the > symbol next to the selected option */
-.dialog_carat_container {
+.dialog-carat-container {
     width: 50px;
     height: 100px;
 
@@ -52,13 +52,13 @@
 }
 
 /* Holds the carat and the dialog options container */
-.input_container {
+.input-container {
     height: 100px;
     display: flex;
 }
 
 /* A text class for an unselected dialog option */
-.input_option {
+.input-option {
     width: 100%;
 
     color: rgba(220, 220, 220, 0.7);
@@ -70,23 +70,14 @@
 }
 
 /* Modifiers for a selected dialog option */
-.option_active {
+.option-active {
     margin-left: 15px;
     width: calc(100% - 50px);
     color: rgba(245, 245, 245, 0.9);
 }
 
-/* Text class for the > symbol */
-.input_selector {
-    position: fixed;
-
-    margin: 2px 0px 2px 28px;
-
-    transition: 0.2s;
-}
-
 /* Modifier class for when the selector is hidden */
-.selector_hidden {
+.selector-hidden{
     transition: 0.3s;
     opacity: 0;
 }
@@ -103,31 +94,14 @@
 
 /* selection/input animations */
 
-/* A container for the > symbol next to the selected option */
-.dialog_carat_container {
-    width: 50px;
-    height: 100px;
-
-    bottom: 14px;
-    position: fixed;
-
-    padding: 20px 0px 40px 0px;
-}
-
-/* Holds the carat and the dialog options container */
-.input_container {
-    height: 100px;
-    display: flex;
-}
-
 /* Given to inputs before they're shown, for fade-in animation */
-.input_hidden {
+.input-hidden {
     opacity: 0 !important;
     transform: translateX(-10px);
 }
 
 /* Text class for the > symbol */
-.input_selector {
+.input-selector {
     position: fixed;
 
     margin: 2px 0px 2px 28px;
@@ -135,7 +109,7 @@
     transition: 0.2s;
 }
 
-.input_selected_disappear {
+.input-selected-disappear {
     transition: 0.5s !important;
     
 
@@ -144,13 +118,13 @@
 }
 
 /* The selected input disappears */
-.input_selected_disappear_2 {
+.input-selected-disappear-2 {
     transition: 0.8s !important;
     opacity: 0;
 }
 
 /* The unselected options immediately disappear */
-.input_unselected_disappear {
+.input-unselected-disappear {
     transition: 0.2s !important;
     transition-timing-function: cubic-bezier(0,.5,.5,1);
 

@@ -1,5 +1,5 @@
-const DIALOG_ELEMENT = document.getElementsByClassName("dialog_options_container")[0];
-const INPUT_CARAT = document.getElementsByClassName("input_selector")[0];
+const DIALOG_ELEMENT = document.getElementsByClassName("dialog-options-container")[0];
+const INPUT_CARAT = document.getElementsByClassName("input-selector")[0];
 
 addEventListener("keydown", (event) => {
     if(event.key == "ArrowUp") {
@@ -34,7 +34,7 @@ async function getInput(textOptions) {
 
 async function waitForEnter() {
     waitingForEnter = true;
-    INPUT_CARAT.classList.remove("selector_hidden");
+    INPUT_CARAT.classList.remove("selector-hidden");
 
     return new Promise((resolve) => {
         document.addEventListener("keydown", onKey);
@@ -42,7 +42,7 @@ async function waitForEnter() {
             if(event.key == "Enter" || event.key == "ArrowRight") {
                 document.removeEventListener("keydown", onKey);
                 waitingForEnter = false;
-                INPUT_CARAT.classList.add("selector_hidden");
+                INPUT_CARAT.classList.add("selector-hidden");
 
                 resolve();
             }
@@ -55,14 +55,14 @@ async function playSelectAnimation() {
     for(let i = 0; i < DIALOG_ELEMENT.children.length; i++) {
         if(i == selectedIndex) {
             activeElement = DIALOG_ELEMENT.children[i];
-            activeElement.classList.add("input_selected_disappear");
+            activeElement.classList.add("input-selected-disappear");
         } else {
-            DIALOG_ELEMENT.children[i].classList.add("input_unselected_disappear");
+            DIALOG_ELEMENT.children[i].classList.add("input-unselected-disappear");
         }
     }
 
     setTimeout(() => {
-        activeElement.classList.add("input_selected_disappear_2");
+        activeElement.classList.add("input-selected-disappear-2");
     }, 1000);
 
     return new Promise(resolve => setTimeout(resolve, "2200"));
@@ -80,12 +80,12 @@ function genOptionTexts() {
 function appendLine(text, active) {
     let ele = document.createElement("p");
     ele.appendChild(document.createTextNode(text));
-    ele.classList.add("input_option");
-    if(active) ele.classList.add("option_active");
+    ele.classList.add("input-option");
+    if(active) ele.classList.add("option-active");
 
-    ele.classList.add("input_hidden");
+    ele.classList.add("input-hidden");
     setTimeout(() => {
-        ele.classList.remove("input_hidden");
+        ele.classList.remove("input-hidden");
     }, 30);
 
     DIALOG_ELEMENT.appendChild(ele);
@@ -105,9 +105,9 @@ function moveTextSelector(intBy) {
 function updateHoverComponents() {
     for(let i = 0; i < DIALOG_ELEMENT.children.length; i++) {
         if(i == selectedIndex) {
-            DIALOG_ELEMENT.children[i].classList.add("option_active");
+            DIALOG_ELEMENT.children[i].classList.add("option-active");
         } else {
-            DIALOG_ELEMENT.children[i].classList.remove("option_active");
+            DIALOG_ELEMENT.children[i].classList.remove("option-active");
         }
     }
 
