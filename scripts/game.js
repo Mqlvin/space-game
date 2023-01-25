@@ -1,15 +1,20 @@
 // var bootupTime = printScript(BOOTUP_SCRIPT);
 
-let testTextBlock = new DialogEntry("You").append("This is my example text").setBold(false).setCharacterInterval(0).setUnderline(true).append("Hi guys this is cool").setBold(true);
+let testTextBlock = new DialogEntry("Computer")
+        .append("This is my example text\nwith a breakline").setBold(false).setCharacterInterval(100).setUnderline(true).pack()
+        .append("...").setBold(false).setCharacterInterval(500).pack()
+        .append("Hi guys this is cool").setBold(true).setCharacterInterval(100).pack(); // so they shold be displaying one after another
 
 async function main() {
     let choice = await getInput(["Enter the room", "Enter the second room", "Turn back", "Go through the hidden passage"]);
 
     if(choice == 0) {
-        await testTextBlock.display();
+        await testTextBlock.displayAll();
     } else {
         getVitals().setEnergy(10);
     }
+
+    // The problem is that the two pieces of tesxt display at the same time.
 }
 
 main();
