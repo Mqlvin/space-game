@@ -1,0 +1,16 @@
+{
+    "0": { // entrypoint
+        "script": [
+            {"text":"**Perfect!**", "speed":"2"} // speeds are 0 - 4 (0 is instant) - with an "ms" it acts as an actual ms, e.g. "50ms"
+        ],
+        "prompt": {
+            "text":"*What would you like to do?*",
+            "speed":"0",
+            "choice":[
+                {"text":"Oxygen Recycler", "action":"goto=13 oxygen+3"},
+                {"text":"Activate full system check", "action":"goto12 power-3"},
+                {"text":"Turn on heaters", "action":"goto=13 power-=3 temp=20.0"}
+            ]
+        }
+    }
+}

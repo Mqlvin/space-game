@@ -6,33 +6,14 @@
 
 */
 
-
-// technically not immutable (i just like the constants naming convention)
-const HTML_ENTITIES = new Map([
-    [" ","&nbsp;"],
-    ["<","&lt;"],
-    [">","&gt;"],
-    ["&","&amp;"],
-    ["\"","&quot;"],
-    ["'","&apos;"],
-    ["¢","&cent;"],
-    ["£","&pound;"],
-    ["¥","&yen;"],
-    ["€","&euro;"],
-    ["©","&copy;"],
-    ["®","&reg"]
-]);
-
-const PLAYER_ICON_MAP = {
-    "you":"👨‍🚀",
-    "computer":"💻",
-    "other":"📻"
-};
+import { Utils } from "./utils.js";
+import { Vitals } from "./vitals.js";
 
 
 
 
-class DialogEntry {
+
+export class DialogEntry {
     constructor(name) {
         this.textComponents = []; // each piece of text (e.g. the two you saw) os a textCompeontn
         this.activeTextComponent = undefined;
@@ -45,7 +26,7 @@ class DialogEntry {
     /* "packs" the current and starts a new text block */
     append(text) {
         this.activeTextComponent = new TextComponent();
-        this.activeTextComponent.text = translateStringToHTML(text);
+        this.activeTextComponent.text = Utils.translateStringToHTML(text);
 
         return this;
     }
@@ -72,7 +53,6 @@ class DialogEntry {
 
         if(this.dialogContainerElement == undefined) {
             this.dialogContainerElement = createDialogContainer(this.name);
-            console.log("created container")
         }
         
         // add text into new text element, then append the text element to the `this.dialogContainerElement`
@@ -94,8 +74,7 @@ class DialogEntry {
 
         // handle special cases
         if(textComponent.text == "") {
-            return new Promise(resolve => resolve()); // i thought returning the promise would say the async function is done and it would continue
-                                                        // so by that logic if i return nothing the statment would never complete idk THIS IS WHAT im confused aobut
+            return;
         }
 
 
@@ -104,6 +83,9 @@ class DialogEntry {
         if(textComponent.bold) newTextElement.classList.add("dialog-bold");
         if(textComponent.italic) newTextElement.classList.add("dialog-italic");
         if(textComponent.underline) newTextElement.classList.add("dialog-underline");
+
+        newTextElement.style.color = textComponent.textColor;
+        newTextElement.style.fontSize = textComponent.textSize;
 
 
         // add it now to main container now, as text will be displayed
@@ -134,18 +116,21 @@ class DialogEntry {
 
     async displayAll() {
         let length = this.textComponents.length; // each line is a text component - i just would like to be able to simply write code in the game.js
-
-        for(let i = 0; i < length; i++) {
-
-
-            console.log("displayng: " + this.textComponents[0]);
-
-
-            await this.display(); // it handles that itself
-
+        let isLocal = this.name.toLowerCase() == "you";
+        let doNetwork = this.name.toLowerCase() != "computer";
+        
+        if(!doNetwork) {
+            for(let i = 0; i < length; i++) {
+                await this.display(); // it handles that itself
+            }
+            return;    
         }
 
-        console.log("here")
+        Vitals.getInstance().setSpeaker(isLocal == true, isLocal == false);
+        for(let i = 0; i < length; i++) {
+            await this.display(); // it handles that itself
+        }
+        Vitals.getInstance().setSpeaker(false, false);
     }
 
 
@@ -198,7 +183,7 @@ class TextComponent {
         this.underline = false;
 
         this.textColor = "rgb(255, 255, 255)";
-        this.textSize = "14px";
+        this.textSize = "17px";
         this.typeSpeed = 0;
 
         this.actsAsDelay = false;
@@ -210,21 +195,22 @@ class TextComponent {
 
 // dialog util
 function createDialogContainer(name) {
-    let dialogContainerElement = document.getElementsByClassName("dialog-container")[0];
+    let dialogContainerElement = document.getElementById("dialog-line-container");
 
     let newDialogEntryContainerElement = document.createElement("div"); // create new container
     newDialogEntryContainerElement.classList.add("dialog-entry-container");
 
     let newDialogPrefix = document.createElement("p"); // create playername <p>
     newDialogPrefix.classList.add("dialog-prefix");
-    newDialogPrefix.innerHTML = PLAYER_ICON_MAP[Object.keys(PLAYER_ICON_MAP).includes(name.toLowerCase()) ? name.toLowerCase() : PLAYER_ICON_MAP.length] + " " + name; // add icon + text
-    if(name.toLowerCase() == "player" || name.toLowerCase() == "computer") newDialogPrefix.classList.add("prefix-you"); // make the you text bold if needed
+
+    newDialogPrefix.innerHTML = getIcon(name) + " " + name; // add icon + text
+    if(name.toLowerCase() == "you" || name.toLowerCase() == "computer") newDialogPrefix.classList.add("prefix-you"); // make the you text bold if needed
 
     newDialogEntryContainerElement.appendChild(newDialogPrefix); // add playername to container
 
     // finally append the container to the visible dialog-container container
     // newDialogEntryContainerElement.classList.remove("dialog-hidden-anim");
-    dialogContainerElement.insertBefore(newDialogEntryContainerElement, dialogContainerElement.firstChild);
+    dialogContainerElement.appendChild(newDialogEntryContainerElement);
 
     newDialogEntryContainerElement.classList.add("dialog-hidden-anim");
 
@@ -249,18 +235,13 @@ function createDialogText() {
 
 
 
-// misc util
 
-function translateStringToHTML(string) {
-    let preprocessed = string;
-
-    // line breaks will be handled when the text is being appened/typed out on screen
-
-    // convert special characters
-    HTML_ENTITIES.forEach((k, v) => {
-        preprocessed = preprocessed.replace(k, v);
-    });
-
-
-    return string;
+function getIcon(name) {
+    if(name.toLowerCase() == "you") {
+        return "👨‍🚀";
+    } else if(name.toLowerCase() == "computer") {
+        return "💻";
+    } else {
+        return "📻";
+    }
 }

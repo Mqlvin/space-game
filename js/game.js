@@ -1,29 +1,66 @@
 // var bootupTime = printScript(BOOTUP_SCRIPT);
 
+import { InputHandler } from "./input.js";
+import { DialogEntry } from "./util/output_text.js";
+import { Vitals } from "./util/vitals.js";
+
+new InputHandler();
+
 let testTextBlock = new DialogEntry("Computer")
         .append("This is my example text\nwith a breakline").setBold(false).setCharacterInterval(100).setUnderline(true).pack()
         .append("...").setBold(false).setCharacterInterval(100).pack()
-        .append("This font is bolded").setBold(true).setCharacterInterval(100).pack(); // so they shold be displaying one after another
+        .append("This font is bolded").setCharacterInterval(100).pack(); // so they shold be displaying one after another
 
-async function main() {
-    let choice = await getInput(["Enter the room", "Enter the second room", "Turn back", "Go through the hidden passage"]);
+let textBlockOne = new DialogEntry("Commander Adam")
+        .append("I'm trying to reestablish a connection with the ISS, but it's failing. \nThe connection is likely interrupted from debris blocking the antenna.\n").setCharacterInterval(50).pack()
+        .append("\nIs it safe for Pilot Allen to clear the antenna?").setItalic(true).setCharacterInterval(50).pack();
 
-    if(choice == 0) {
-        await testTextBlock.displayAll();
-    } else {
-        getVitals().setEnergy(10);
+let textBlockResposneOne = new DialogEntry("You")
+        .append("Yes, I believe it's safe. I'll ask Allen to clear it now, seeing as he's out there already!\n").setCharacterInterval(50).pack()
+        .append("...\n").setCharacterInterval(30).pack()
+        .append("It's been cleared.").setItalic(true).setCharacterInterval(50).pack();
+
+let computerResponseOne = new DialogEntry("Computer")
+        .append("Antenna successfully cleaned. Connection establishing...\n").setTextColour("#a5e8ad").setBold(true).setCharacterInterval(2).pack()
+        .delay(1000).pack()
+        .append("Connection established to:").setTextColour("#a5e8ad").setBold(true).setCharacterInterval(20).pack()
+        .append("\n    IP:159.178.157.108").setTextColour("#a5e8ad").setBold(true).setCharacterInterval(20).pack()
+        .append("\n    PORT:2023").setTextColour("#a5e8ad").setBold(true).setCharacterInterval(20).pack();
+
+let textBlockTwo = new DialogEntry("Commander Adam")
+        .append("Perfect!").setBold(true).setCharacterInterval(50).pack()
+        .append(" I've made the connection. I should be able to look further into the problem now.\n ").setCharacterInterval(5).pack()
+        .append("Where should I look first?").setItalic(true).setCharacterInterval(5).pack();
+
+let textBlockThree = new DialogEntry("Computer")
+        .append("Alert!").setBold(true).setCharacterInterval(20).pack()
+        .append(" Oxygen levels significantly low. ").setCharacterInterval(20).pack();
+
+
+export async function main() {
+    // defaults
+    {
+        Vitals.getInstance().setOxygen(100, false);
+        Vitals.getInstance().setEnergy(100, false);
+        Vitals.getInstance().setTemperature(24.0, false);
     }
 
-    let choice2 = await getInput(["Example option", "Pick me", "Another example option"]);
+    await textBlockOne.displayAll();
 
-    if(choice2 == 1) {
-        await new DialogEntry("You").append("This is another test statement! (this will display instantly)").setCharacterInterval(0).pack().displayAll();
+    if((await InputHandler.i().getInput(["Yes", "No"])) == 0) {
+        await textBlockResposneOne.displayAll();
     }
 
-    // The problem is that the two pieces of tesxt display at the same time.
+    await computerResponseOne.displayAll();
+
+    await textBlockTwo.displayAll();
+
+    if((await InputHandler.i().getInput(["Oxygen recycler", "Energy generator", "Internal Pressure"])) == 0) {
+        await Vitals.getInstance().setOxygen(90, true);
+    }
+
+    await textBlockThree.displayAll();
 }
-
-main();
 
 
 

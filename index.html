@@ -8,6 +8,7 @@
 
         <link rel="stylesheet" href="styles/style.css">
         <link rel="stylesheet" href="styles/terminal.css">
+        <link rel="stylesheet" href="styles/startup.css">
         <link rel="stylesheet" href="styles/vitals.css">
         <link rel="stylesheet" href="styles/dialog.css">
     </head>
@@ -18,13 +19,37 @@
 
             <div class="terminal window">
 
-                <div class="terminal-boxes">
+
+
+                <div id="nameselect" class="startup-boxes i-box">
+                    <div id="nameselect-window" class="name-selector-container i-box">
+                        <p class="select-name-text">Select name:</p>
+                        <div class="name-select-wheel">
+                            <span id="left-name" class="wheel-arrow wheel-left">&lt;</span>
+                            <div id="name-container" class="names-container">
+                                <p class="name-inactive">Franklin</p>
+                                <p class="name-center">Trevor</p>
+                                <p class="name-inactive">Michael</p>
+                            </div>
+                            <span id="right-name" class="wheel-arrow wheel-right">&gt;</span>
+                        </div>
+                        <div class="submit-name">ENTER</div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div id="main-boxes" class="terminal-boxes">
 
                     <div class="i-box box-dialog">
 
                         <div class="dialog-container">
 
-                           <!-- Content is dynamically added here --> 
+                           <div id="dialog-line-container">
+                            
+                           </div>
                             
                         </div>
 
@@ -58,61 +83,126 @@
 
                         <!-- Content is dynamically edited here -->
 
-                        <div class="vital-databar-container">
+                        <div>
+                            <div class="vital-databar-container">
 
-                            <p class="vital-bar-text Oxygen">Oxygen (63%)</p>
+                                <p class="vital-bar-text Oxygen">Oxygen (0%)</p>
+    
+                                <div class="vital-bar-container">
+                                    <div class="vital-bar-fluid Oxygen"></div>
+                                </div>
+    
+                            </div>
+    
+                            <div class="vital-databar-container">
+    
+                                <p class="vital-bar-text Power">Power (0%)</p>
+    
+                                <div class="vital-bar-container">
+                                    <div class="vital-bar-fluid Power"></div>
+                                </div>
+    
+                            </div>
+    
+                            <div class="vital-databar-container">
+    
+                                <div class="vital-bar-markings markings-25"></div>
+                                <div class="vital-bar-markings markings-50"></div>
+                                <div class="vital-bar-markings markings-75"></div>
+    
+                                <p class="vital-bar-text Temperature">Temperature (0℃)</p>
+    
+                                <div class="vital-bar-container">
+                                    <div class="vital-bar-fluid Temperature"></div>
+                                </div>
+    
+                                <div class="vital-bar-markings markings-25 markings-bottom"></div>
+                                <div class="vital-bar-markings markings-50 markings-bottom"></div>
+                                <div class="vital-bar-markings markings-75 markings-bottom"></div>
+    
+                            </div>
+                        </div>
 
-                            <div class="vital-bar-container">
-                                <div class="vital-bar-fluid Oxygen"></div>
+
+
+                        
+
+
+                        <div class="vital-dashboard-container">
+                            
+                            <div class="vital-sysinfo-container">
+                                System:
+                                <div class="vital-sys-info-field">
+                                    <span class="sysinfo-key">OS: </span>
+                                    <span class="sysinfo-value">Linux 6.4.2-arch1-1</span>
+                                </div>
+                                <div class="vital-sys-info-field">
+                                    <span class="sysinfo-key">Architecture: </span>
+                                    <span class="sysinfo-value">[x86_64]</span>
+                                </div>
+                                <div class="vital-sys-info-field">
+                                    <span class="sysinfo-key">Uptime: </span>
+                                    <span id="uptime" class="sysinfo-value">00:00:00</span>
+                                </div>
+                            </div>
+
+                            <div class="vital-network-container">
+                                Network:
+                                <div class="vital-network-entry-field">
+                                    <div>
+                                        <span class="network-transfer-direction">tx: </span>
+                                        <span class="network-transfer-rate transfer-out"><span class="network-transfer-rate transfer-out" id="nw-out">0</span>KiB</span><span class="network-transfer-direction">/s</span>
+                                    </div>
+                                    <canvas id="tx-graph" class="network-graph" width="120" height="16"></canvas>
+                                </div>
+                                <div class="vital-network-entry-field">
+                                    <div>
+                                        <span class="network-transfer-direction">rx: </span>
+                                    <span class="network-transfer-rate transfer-in"><span class="network-transfer-rate transfer-in" id="nw-in">0</span>KiB</span><span class="network-transfer-direction">/s</span>
+                                    </div>
+                                    <canvas id="rx-graph" class="network-graph" width="120" height="16"></canvas>
+                                </div>
+                            </div>
+
+                            <div class="vital-power-consumption-container">
+                                Power:
+                                <div class="vital-power-consumption-entry-field">
+                                    <span class="power-consumption-title">In: </span>
+                                    <span class="power-consumption-value power-in" id="power-in">3804kW</span>
+                                </div>
+                                <div class="vital-power-consumption-entry-field">
+                                    <span class="power-consumption-title">Load: </span>
+                                    <span class="power-consumption-value power-out" id="power-out">3404kW</span>
+                                </div>
+                                <div class="vital-power-consumption-entry-field">
+                                    <span class="power-consumption-title">Net balance: </span>
+                                    <span class="power-consumption-value power-net" id="power-net">+404kW</span>
+                                </div>
                             </div>
 
                         </div>
 
-                        <div class="vital-databar-container">
-
-                            <p class="vital-bar-text Power">Power (89%)</p>
-
-                            <div class="vital-bar-container">
-                                <div class="vital-bar-fluid Power"></div>
-                            </div>
-
-                        </div>
-
-                        <div class="vital-databar-container">
-
-                            <div class="vital-bar-markings markings-25"></div>
-                            <div class="vital-bar-markings markings-50"></div>
-                            <div class="vital-bar-markings markings-75"></div>
-
-                            <p class="vital-bar-text Temperature">Temperature (20℃)</p>
-
-                            <div class="vital-bar-container">
-                                <div class="vital-bar-fluid Temperature"></div>
-                            </div>
-
-                            <div class="vital-bar-markings markings-25 markings-bottom"></div>
-                            <div class="vital-bar-markings markings-50 markings-bottom"></div>
-                            <div class="vital-bar-markings markings-75 markings-bottom"></div>
-
-                        </div>
 
 
 
-
-                    </div>
+                    </div> <!-- close info container -->
 
                 </div> 
 
             </div>
 
         </div>
+        <script src="js/util/terminal_fx.js"></script> <!-- unrelated to main code -->
 
+        <script type="module" src="js/entrypoint.js"></script>
         <!-- <script type="text/javascript" src="scripts/constants.js"></script> -->
-        <script type="text/javascript" src="scripts/output_text.js"></script>
+
+        <script type="module" src="js/util/utils.js"></script>
+        <script type="module" src="js/util/output_text.js"></script>
+        <script type="module" src="js/util/vitals.js"></script>
             
-        <script type="text/javascript" src="scripts/terminal.js"></script>
-        <script type="text/javascript" src="scripts/input.js"></script>
-        <script type="text/javascript" src="scripts/vitals.js"></script>
-        <script type="text/javascript" src="scripts/game.js"></script>
+        <script type="module" src="js/terminal.js"></script>
+        <script type="module" src="js/input.js"></script>
+        <script type="module" src="js/game.js"></script>
     </body>
 </html>
